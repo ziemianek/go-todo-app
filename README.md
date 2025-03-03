@@ -26,8 +26,8 @@ go-todo-app/
 │ └── file_handler.go
 ├── cli/
 │ └── cli.go
-└── data/
-└── todos.json
+├── data/
+│ └── todos.json
 ```
 
 ## Features
