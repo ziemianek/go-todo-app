@@ -1,29 +1,8 @@
 package todo
 
-import "fmt"
-
-// TODO: How can I only pass task id to the TodoList struct?
-
-// ================
-// Types
-// ================
-
-type Task struct {
-	ID          int    `json:"id"`
-	Description string `json:"description"`
-	Completed   bool   `json:"completed"`
-}
-
-type TodoList struct {
-	ID       int    `json:"id"`
-	Name     string `json:"name"`
-	Tasks    []Task `json:"tasks"`
-	Filename string `json:"filename"`
-}
-
-type TodoLists struct {
-	Lists []TodoList `json:"lists"`
-}
+import (
+	"fmt"
+)
 
 // ================
 // Listing elements
@@ -52,7 +31,7 @@ func (t *TodoList) ListCompleted() []Task {
 			completed_tasks = append(completed_tasks, task)
 		}
 	}
-	return completed_tasks
+	return completed_tasks // TODO: Remove later? It is needed in test_todo...
 }
 
 // Add new todo items
