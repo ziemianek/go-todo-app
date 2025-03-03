@@ -30,18 +30,6 @@ go-todo-app/
 │ └── todos.json
 ```
 
-## Features
-
-- Add new todo items
-- List all todos
-- Mark todos as completed
-- Delete todos
-- Save todos to a file
-- Load todos from a file
-- Filter todos (show completed/incomplete)
-- Basic CLI interface
-- Search functionality
-
 ## Getting Started
 
 ### Prerequisites

@@ -4,6 +4,10 @@ import "fmt"
 
 // TODO: How can I only pass task id to the TodoList struct?
 
+// ================
+// Types
+// ================
+
 type Task struct {
 	ID          int    `json:"id"`
 	Description string `json:"description"`
@@ -21,12 +25,34 @@ type TodoLists struct {
 	Lists []TodoList `json:"lists"`
 }
 
-// List all existing lists
-func (t *TodoLists) List() []TodoList {
+// ================
+// Listing elements
+// ================
+
+func (t *TodoLists) ListAll() []TodoList {
 	for _, list := range t.Lists {
 		fmt.Println(list.Name)
 	}
 	return t.Lists // TODO: Remove later? It is needed in test_todo...
+}
+
+func (t *TodoList) ListAll() []Task {
+	for _, task := range t.Tasks {
+		fmt.Println(task.Description)
+	}
+	return t.Tasks // TODO: Remove later? It is needed in test_todo...
+}
+
+func (t *TodoList) ListCompleted() []Task {
+	completed_tasks := []Task{}
+
+	for _, task := range t.Tasks {
+		if task.Completed {
+			fmt.Printf("- [x] %s", task.Description)
+			completed_tasks = append(completed_tasks, task)
+		}
+	}
+	return completed_tasks
 }
 
 // Add new todo items

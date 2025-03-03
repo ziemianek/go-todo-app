@@ -38,6 +38,6 @@ func main() {
 		Lists: []todo.TodoList{todoList1, todoList2},
 	}
 
-	todoLists.List()
+	todoLists.ListAll()
 
 }
