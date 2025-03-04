@@ -10,14 +10,14 @@ import (
 
 func (t *TodoLists) ListAll() []TodoList {
 	for _, list := range t.Lists {
-		fmt.Println(list.Name)
+		fmt.Printf("%d. %s\n", list.ID, list.Name)
 	}
 	return t.Lists // TODO: Remove later? It is needed in test_todo...
 }
 
 func (t *TodoList) ListAll() []Task {
 	for _, task := range t.Tasks {
-		fmt.Println(task.Description)
+		fmt.Printf("%d. %s\n", task.ID, task.Description)
 	}
 	return t.Tasks // TODO: Remove later? It is needed in test_todo...
 }
@@ -27,7 +27,7 @@ func (t *TodoList) ListCompleted() []Task {
 
 	for _, task := range t.Tasks {
 		if task.Completed {
-			fmt.Printf("- [x] %s", task.Description)
+			fmt.Printf("- [x] %s\n", task.Description)
 			completed_tasks = append(completed_tasks, task)
 		}
 	}

@@ -2,25 +2,21 @@ package todo
 
 import (
 	"encoding/json"
-	"fmt"
+	"io"
 	"os"
 )
 
-func readTodoListFromJSON(filename string) (*TodoList, error) {
+func ReadJSON(filename string, v interface{}) error {
 	file, err := os.Open(filename)
 	if err != nil {
-		fmt.Printf("%s does not exist", filename)
-		return nil, err
+		return err
 	}
 	defer file.Close()
 
-	var todos TodoList
-
-	decoder := json.NewDecoder(file)
-	if err := decoder.Decode(&todos); err != nil {
-		fmt.Println("Error decoding JSON:", err)
-		return nil, err
+	byteValue, err := io.ReadAll(file)
+	if err != nil {
+		return err
 	}
 
-	return &todos, nil
+	return json.Unmarshal(byteValue, v)
 }

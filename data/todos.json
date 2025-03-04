@@ -1,0 +1,24 @@
+{
+    "lists": [
+        {
+            "id": 1,
+            "name": "Grocery List",
+            "tasks": [
+                {"id": 101, "description": "Buy milk", "completed": false},
+                {"id": 102, "description": "Buy eggs", "completed": true},
+                {"id": 103, "description": "Buy bread", "completed": false}
+            ],
+            "filename": "grocery.json"
+        },
+        {
+            "id": 2,
+            "name": "Work Tasks",
+            "tasks": [
+                {"id": 201, "description": "Finish report", "completed": false},
+                {"id": 202, "description": "Email client", "completed": true},
+                {"id": 203, "description": "Update project plan", "completed": false}
+            ],
+            "filename": "work.json"
+        }
+    ]
+}
