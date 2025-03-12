@@ -7,10 +7,8 @@ import (
 )
 
 func main() {
-	filename := "data/todos.json"
-
 	var todoLists todo.TodoLists
-	err := todo.ReadJSON(filename, &todoLists)
+	err := todo.ReadJSON(todo.Filename, &todoLists)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
@@ -18,7 +16,7 @@ func main() {
 
 	listId := 1
 	todoLists.ListAllTasksFromList(listId)
-	todoLists.AddTask(listId, "New task")
-	todoLists.ListAllTasksFromList(listId)
+	// todoLists.AddTask(listId, "New task")
+	// todoLists.ListAllTasksFromList(listId)
 
 }

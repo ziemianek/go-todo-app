@@ -48,7 +48,6 @@ func (t *TodoLists) ListCompleted(listId int) []Task {
 
 // Add new todo items
 func (t *TodoLists) AddTask(listId int, description string) (bool, error) {
-	// TODO: save to file
 	list := t.GetListById(listId)
 	task := Task{
 		ID:          len(list.Tasks) + 1,
@@ -56,6 +55,11 @@ func (t *TodoLists) AddTask(listId int, description string) (bool, error) {
 		Completed:   false,
 	}
 	list.Tasks = append(list.Tasks, task)
+
+	err := WriteJSON(Filename, t)
+	if err != nil {
+		panic(err)
+	}
 	return true, nil
 }
 
