@@ -16,6 +16,9 @@ func main() {
 		return
 	}
 
-	todoLists.ListAll()
+	listId := 1
+	todoLists.ListAllTasksFromList(listId)
+	todoLists.AddTask(listId, "New task")
+	todoLists.ListAllTasksFromList(listId)
 
 }

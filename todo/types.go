@@ -13,10 +13,9 @@ type Task struct {
 }
 
 type TodoList struct {
-	ID       int    `json:"id"`
-	Name     string `json:"name"`
-	Tasks    []Task `json:"tasks"`
-	Filename string `json:"filename"`
+	ID    int    `json:"id"`
+	Name  string `json:"name"`
+	Tasks []Task `json:"tasks"`
 }
 
 type TodoLists struct {
