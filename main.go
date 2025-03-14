@@ -19,4 +19,7 @@ func main() {
 	// todoLists.AddTask(listId, "New task")
 	// todoLists.ListAllTasksFromList(listId)
 
+	// Basic CLI interface
+	// Search functionality
+
 }

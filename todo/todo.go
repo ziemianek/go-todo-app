@@ -13,10 +13,6 @@ func (t *TodoLists) GetListById(listId int) *TodoList {
 	return nil
 }
 
-// ================
-// Listing elements
-// ================
-
 func (t *TodoLists) ListAllLists() []TodoList {
 	for _, list := range t.Lists {
 		fmt.Printf("%d. %s\n", list.ID, list.Name)
@@ -46,8 +42,19 @@ func (t *TodoLists) ListCompleted(listId int) []Task {
 	return completed_tasks // TODO: Remove later? It is needed in test_todo...
 }
 
+func (t *TodoLists) ListNotCompleted(listId int) error {
+	list := t.GetListById(listId)
+
+	for _, task := range list.Tasks {
+		if !task.Completed {
+			fmt.Printf("- [ ] %s\n", task.Description)
+		}
+	}
+	return nil
+}
+
 // Add new todo items
-func (t *TodoLists) AddTask(listId int, description string) (bool, error) {
+func (t *TodoLists) AddTask(listId int, description string) error {
 	list := t.GetListById(listId)
 	task := Task{
 		ID:          len(list.Tasks) + 1,
@@ -58,15 +65,41 @@ func (t *TodoLists) AddTask(listId int, description string) (bool, error) {
 
 	err := WriteJSON(Filename, t)
 	if err != nil {
-		panic(err)
+		return err
 	}
-	return true, nil
+	return nil
+}
+
+// Delete task
+func (t *TodoLists) DeleteTask(listId int, taskId int) error {
+	list := t.GetListById(listId)
+
+	for i := range list.Tasks {
+		if list.Tasks[i].ID == taskId {
+			list.Tasks = append(list.Tasks[:i], list.Tasks[i+1:]...)
+		}
+	}
+
+	err := WriteJSON(Filename, t)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 // Mark todos as completed
-// Delete todos
-// Save todos to a file
-// Load todos from a file
-// Filter todos (show completed/incomplete)
-// Basic CLI interface
-// Search functionality
+func (t *TodoLists) MarkAsCompleted(listId int, taskId int) error {
+	list := t.GetListById(listId)
+
+	for i := range list.Tasks {
+		if list.Tasks[i].ID == taskId {
+			list.Tasks[i].Completed = true
+		}
+	}
+
+	err := WriteJSON(Filename, t)
+	if err != nil {
+		return err
+	}
+	return nil
+}
